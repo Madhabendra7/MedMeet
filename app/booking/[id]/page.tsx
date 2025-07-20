@@ -1,4 +1,3 @@
-import { getDoctorById } from '@/lib/auth';
 import BookingForm from './BookingForm';
 
 export async function generateStaticParams() {
@@ -10,5 +9,5 @@ export async function generateStaticParams() {
 }
 
 export default function BookingPage({ params }: { params: { id: string } }) {
-  return <BookingForm doctorId={params.id} />;
+  return <BookingForm bookingId={params.id} />;
 }

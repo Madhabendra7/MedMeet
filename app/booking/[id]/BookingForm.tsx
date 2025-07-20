@@ -10,10 +10,10 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 interface BookingFormProps {
-  doctorId: string;
+  bookingId: string;
 }
 
-export default function BookingForm({ doctorId }: BookingFormProps) {
+export default function BookingForm({ bookingId }: BookingFormProps) {
   const [doctor, setDoctor] = useState<Doctor | null>(null);
   const [availableSlots, setAvailableSlots] = useState<TimeSlot[]>([]);
   const [selectedSlot, setSelectedSlot] = useState<TimeSlot | null>(null);
@@ -34,7 +34,7 @@ export default function BookingForm({ doctorId }: BookingFormProps) {
   ];
 
   useEffect(() => {
-    const foundDoctor = getDoctorById(doctorId);
+    const foundDoctor = getDoctorById(bookingId);
     setDoctor(foundDoctor);
     setUser(getCurrentUser());
     
@@ -46,7 +46,7 @@ export default function BookingForm({ doctorId }: BookingFormProps) {
       );
       setAvailableSlots(available);
     }
-  }, [doctorId]);
+  }, [bookingId]);
 
   const handleSlotSelection = (slot: TimeSlot) => {
     setSelectedSlot(slot);
@@ -61,7 +61,7 @@ export default function BookingForm({ doctorId }: BookingFormProps) {
 
     try {
       const appointment = bookAppointment(
-        doctorId, 
+        bookingId, 
         user.id, 
         selectedSlot.date, 
         selectedSlot.time
