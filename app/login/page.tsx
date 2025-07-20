@@ -37,11 +37,11 @@ export default function LoginPage() {
     setError('');
 
     try {
-      const user = login(email, password);
+      const user = await login(email, password);
       if (user) {
         setSuccess(true);
         setUserRole(user.role);
-        
+
         // Immediate redirect without delay
         if (user.role === 'doctor') {
           router.push('/doctor/dashboard');
